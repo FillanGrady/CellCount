@@ -2,14 +2,9 @@ import NetworkTrain
 import CellFromIllustrator
 import os
 import argparse
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-import skimage.segmentation
 import scipy.ndimage
 import numpy as np
-import math
 from PIL import Image
-from GenerateTrainData import data_augmentation
 from Constants import SIZE, RADIUS
 
 
@@ -70,51 +65,6 @@ def local_maxima_generate_points(arr, mask=None, find_maxima=True):
     return X, maxima
 
 
-def felzenszwalb_generate_points(arr):
-    fuzzy = scipy.ndimage.filters.gaussian_filter(arr, sigma=10)
-    felzenszwalb = skimage.segmentation.felzenszwalb(arr, scale=.1, sigma=0.8, min_size=100)
-
-    coms = scipy.ndimage.measurements.center_of_mass(arr, felzenszwalb, range(1, np.max(felzenszwalb)))
-    X = []
-    COMs = []
-    for com in coms:
-        if math.isnan(com[0]) or math.isnan(com[1]):
-            continue
-        x = int(com[0])
-        y = int(com[1])
-        if arr[x, y] > fuzzy[x, y]:
-            x, y = CellFromIllustrator.wobble_point(fuzzy, x, y)
-            sub_arr = arr[x-RADIUS:x+RADIUS, y-RADIUS:y+RADIUS]
-            if sub_arr.shape == (SIZE, SIZE):
-                X.append(sub_arr)
-                COMs.append((x, y))
-    X = np.array(X).reshape(-1, 1, 80, 80)
-    COMs = np.array(COMs)
-    return X, COMs
-
-
-def take_sub_array(arr, x1, x2, y1, y2):
-    place_x1 = 0
-    place_x2 = x2 - x1
-    place_y1 = 0
-    place_y2 = y2 - y1
-    sub_array = np.zeros(shape=(x2 - x1, y2 - y1))
-    if x1 < 0:
-        place_x1 = -x1
-        x1 = 0
-    if y1 < 0:
-        place_y1 = -y1
-        y1 = 0
-    if x2 > arr.shape[0]:
-        place_x2 = arr.shape[0] - x1
-        x2 = arr.shape[0]
-    if y2 > arr.shape[1]:
-        place_y2 = arr.shape[1] - y1
-        y2 = arr.shape[1]
-    sub_array[place_x1: place_x2, place_y1: place_y2] = arr[x1: x2, y1: y2]
-    return sub_array
-
-
 class CreateSVG():
     def __init__(self, output_filename, artboard_size_xy, input_image):
         self.output_filename = output_filename
@@ -153,7 +103,6 @@ class CreateSVG():
 
 
 if __name__ == "__main__":
-    mng = plt.get_current_fig_manager()
 
     parser = argparse.ArgumentParser(description="This program uses the pretrained NN to search for cells")
     parser.add_argument("-d", "--directory", type=str, help="Top level directory")
