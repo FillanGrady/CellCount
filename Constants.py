@@ -1,0 +1,2 @@
+SIZE = 10
+RADIUS = SIZE // 2
