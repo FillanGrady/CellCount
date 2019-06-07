@@ -41,10 +41,9 @@ def generate_negative_data(arr, cell_map, number):
     :param number:
     :return:
     """
-    count = 0
     X = []
     Y = []
-    probabilities = np.sqrt(np.ravel(arr).astype(np.uint64))
+    probabilities = 255 - np.ravel(arr).astype(np.uint64)
     probabilities = probabilities / probabilities.sum()
     start_locations = np.random.choice(arr.size, size=number, p=probabilities)
     # Generates a weighted random vector NUMBER long, where the probability of any value is the lightness of that pixel
@@ -55,7 +54,6 @@ def generate_negative_data(arr, cell_map, number):
             if sub_arr.size == SIZE ** 2:
                 X.append(sub_arr)
                 Y.append([0, 1])
-                count += 1
     return X, Y
 
 

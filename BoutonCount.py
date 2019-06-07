@@ -115,7 +115,7 @@ if __name__ == "__main__":
             continue
         arrs = []
         for file in os.listdir(os.path.join(args.directory, directory)):
-            if file.endswith(".tif"):
+            if file.endswith(".tif") and "IMAGE" in file:
                 arrs.append(CellFromIllustrator.file_to_array(os.path.join(args.directory, directory, file)).astype(np.float32))
         arr = np.concatenate(arrs, axis=1)
         arr = (arr - arr.min()) / (arr.max() - arr.min())
