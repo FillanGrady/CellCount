@@ -109,7 +109,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     model = NetworkTrain.load_json_model("Boutons")
-    for directory in os.listdir(args.directory):
+    for directory in sorted(os.listdir(args.directory)):
         print(os.path.join(args.directory, directory))
         output_file = os.path.join(args.directory, "%s.svg" % directory)
         if not os.path.isdir(os.path.join(args.directory, directory)):
@@ -117,7 +117,7 @@ if __name__ == "__main__":
         if os.path.exists(output_file):
             continue
         arrs = []
-        for file in os.listdir(os.path.join(args.directory, directory)):
+        for file in sorted(os.listdir(os.path.join(args.directory, directory))):
             if file.endswith(".tif") and "IMAGE" in file:
                 arrs.append(CellFromIllustrator.file_to_array(os.path.join(args.directory, directory, file)).astype(np.float32))
         arr = np.concatenate(arrs, axis=1)
