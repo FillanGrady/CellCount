@@ -111,7 +111,10 @@ if __name__ == "__main__":
     model = NetworkTrain.load_json_model("Boutons")
     for directory in os.listdir(args.directory):
         print(os.path.join(args.directory, directory))
+        output_file = os.path.join(args.directory, "%s.svg" % directory)
         if not os.path.isdir(os.path.join(args.directory, directory)):
+            continue
+        if os.path.exists(output_file):
             continue
         arrs = []
         for file in os.listdir(os.path.join(args.directory, directory)):
@@ -125,7 +128,7 @@ if __name__ == "__main__":
         X, COMs = local_maxima_generate_points(arr, find_maxima=False)
         output = model.predict(X)
         prediction = output[:, 0] > output[:, 1]
-        svg = CreateSVG(os.path.join(args.directory, "%s.svg" % directory), arr.shape, image_path)
+        svg = CreateSVG(output_file, arr.shape, image_path)
         for i in range(prediction.size):
             if prediction[i]:
                 x, y = COMs[i]
