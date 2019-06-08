@@ -64,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BoutonCount.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="119" column="79" selection-start-line="119" selection-start-column="79" selection-end-line="119" selection-end-column="79" />
+            <state relative-caret-position="488">
+              <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -233,7 +233,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Python.BoutonCount">
-    <configuration name="BoutonCount" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="BoutonCount" type="PythonConfigurationType" factoryName="Python">
       <module name="CellCount" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -369,7 +369,6 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.BoutonCount" />
         <item itemvalue="Python.NetworkTrain" />
         <item itemvalue="Python.GenerateTrainData" />
         <item itemvalue="Python.CellFromIllustrator" />
@@ -402,7 +401,14 @@
       <option name="project" value="LOCAL" />
       <updated>1559866301009</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Sorted files">
+      <created>1559928755321</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1559928755321</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -414,7 +420,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4372146" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.43619248" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39435145" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -431,7 +437,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Cleaned up imports" />
     <MESSAGE value="Increased negative training data" />
-    <option name="LAST_COMMIT_MESSAGE" value="Increased negative training data" />
+    <MESSAGE value="Sorted files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sorted files" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -657,8 +664,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BoutonCount.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="119" column="79" selection-start-line="119" selection-start-column="79" selection-end-line="119" selection-end-column="79" />
+        <state relative-caret-position="488">
+          <caret line="117" lean-forward="true" selection-start-line="117" selection-end-line="117" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

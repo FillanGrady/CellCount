@@ -8,6 +8,14 @@ from PIL import Image
 from Constants import SIZE, RADIUS
 
 
+def get_sorted_subdirectories(dir):
+    directories = os.listdir(dir)
+    directories = ["%02d" % int(x) for x in directories if not "." in x]
+    directories = sorted(directories)
+    directories = [x.lstrip("0") for x in directories]
+    return directories
+
+
 def get_next_number(folder):
     i = 0
     while True:
@@ -109,7 +117,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     model = NetworkTrain.load_json_model("Boutons")
-    for directory in sorted(os.listdir(args.directory)):
+    for directory in get_sorted_subdirectories(args.directory):
         print(os.path.join(args.directory, directory))
         output_file = os.path.join(args.directory, "%s.svg" % directory)
         if not os.path.isdir(os.path.join(args.directory, directory)):
