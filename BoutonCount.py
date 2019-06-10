@@ -5,6 +5,7 @@ import argparse
 import scipy.ndimage
 import numpy as np
 from PIL import Image
+import time
 from Constants import SIZE, RADIUS
 
 
@@ -133,8 +134,12 @@ if __name__ == "__main__":
         im = Image.fromarray(arr * 255).convert("L")
         image_path = os.path.join(args.directory, "%s.jpg" % directory)
         im.save(image_path)
+        start_time = time.time()
         X, COMs = local_maxima_generate_points(arr, find_maxima=False)
+        print("Proposal took: %s" % (time.time() - start_time))
+        start_time = time.time()
         output = model.predict(X)
+        print("ML took: %s" % (time.time() - start_time))
         prediction = output[:, 0] > output[:, 1]
         svg = CreateSVG(output_file, arr.shape, image_path)
         for i in range(prediction.size):
