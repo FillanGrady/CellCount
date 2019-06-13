@@ -110,28 +110,39 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     model = NetworkTrain.load_json_model("Boutons")
+
+    load_time = 0
+    proposal_time = 0
+    ML_time = 0
+    output_time = 0
     for directory in sorted(os.listdir(args.directory)):
-        print(os.path.join(args.directory, directory))
         output_file = os.path.join(args.directory, "%s.svg" % directory)
         if not os.path.isdir(os.path.join(args.directory, directory)):
             continue
         if os.path.exists(output_file):
             continue
         arrs = []
-        for file in sorted(os.listdir(os.path.join(args.directory, directory))):
-            if file.endswith(".tif") and "IMAGE" in file:
-                arrs.append(CellFromIllustrator.file_to_array(os.path.join(args.directory, directory, file)).astype(np.float32))
+        start_time = time.time()
+        try:
+            for file in sorted(os.listdir(os.path.join(args.directory, directory))):
+                if file.endswith(".tif") and "IMAGE" in file:
+                    arrs.append(CellFromIllustrator.file_to_array(os.path.join(args.directory, directory, file)).astype(np.float32))
+        except OSError:
+            print("Images for %s do not exist" % directory)
+            continue
         arr = np.concatenate(arrs, axis=1)
         arr = (arr - arr.min()) / (arr.max() - arr.min())
         im = Image.fromarray(arr * 255).convert("L")
         image_path = os.path.join(args.directory, "%s.jpg" % directory)
         im.save(image_path)
+        load_time += time.time() - start_time
         start_time = time.time()
         X, COMs = local_maxima_generate_points(arr, find_maxima=False)
-        print("Proposal took: %s" % (time.time() - start_time))
+        proposal_time += time.time() - start_time
         start_time = time.time()
         output = model.predict(X)
-        print("ML took: %s" % (time.time() - start_time))
+        ML_time += time.time() - start_time
+        start_time = time.time()
         prediction = output[:, 0] > output[:, 1]
         svg = CreateSVG(output_file, arr.shape, image_path)
         for i in range(prediction.size):
@@ -139,3 +150,8 @@ if __name__ == "__main__":
                 x, y = COMs[i]
                 svg.add_symbol(location_xy=(y, x))
         svg.output()
+        output_time += time.time() - start_time
+    print("Load Time: %.2f" % load_time)
+    print("Proposal Time: %.2f" % proposal_time)
+    print("ML Time: %.2f" % ML_time)
+    print("Output Time: %.2f" % output_time)
