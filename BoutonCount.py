@@ -67,8 +67,8 @@ def local_maxima_generate_points(arr, mask=None, find_maxima=True):
 
 
 class CreateSVG():
-    def __init__(self, output_filename, artboard_size_xy, input_image):
-        self.output_filename = output_filename
+    def __init__(self, output_svgname, artboard_size_xy, input_image):
+        self.output_svgname = output_svgname
         x = artboard_size_xy[1]
         y = artboard_size_xy[0]
         self.string = \
@@ -99,42 +99,40 @@ class CreateSVG():
         self.string += \
 """</g>
 </svg>"""
-        with open(self.output_filename, 'w+') as f:
+        with open(self.output_svgname, 'w+') as f:
             f.write(self.string)
 
 
-if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser(description="This program uses the pretrained NN to search for cells")
-    parser.add_argument("-d", "--directory", type=str, help="Top level directory")
-    args = parser.parse_args()
-
-    model = NetworkTrain.load_json_model("Boutons")
-
+def count_brain(brain_directory, model):
     load_time = 0
     proposal_time = 0
     ML_time = 0
     output_time = 0
-    for directory in sorted(os.listdir(args.directory)):
-        output_file = os.path.join(args.directory, "%s.svg" % directory)
-        if not os.path.isdir(os.path.join(args.directory, directory)):
+    for directory in sorted(os.listdir(brain_directory)):
+        directory = os.path.join(brain_directory, directory)
+        output_jpg = "%s.jpg" % directory
+        output_svg = "%s.svg" % directory
+        if not os.path.isdir(os.path.join(brain_directory, directory)):
             continue
-        if os.path.exists(output_file):
+        if os.path.exists(output_jpg):
             continue
         arrs = []
         start_time = time.time()
         try:
-            for file in sorted(os.listdir(os.path.join(args.directory, directory))):
+            for file in sorted(os.listdir(directory)):
                 if file.endswith(".tif") and "IMAGE" in file:
-                    arrs.append(CellFromIllustrator.file_to_array(os.path.join(args.directory, directory, file)).astype(np.float32))
+                    arrs.append(CellFromIllustrator.file_to_array(os.path.join(directory, file)).astype(np.float32))
         except OSError:
             print("Images for %s do not exist" % directory)
             continue
+        print("Working on %s" % output_jpg)
         arr = np.concatenate(arrs, axis=1)
         arr = (arr - arr.min()) / (arr.max() - arr.min())
         im = Image.fromarray(arr * 255).convert("L")
-        image_path = os.path.join(args.directory, "%s.jpg" % directory)
-        im.save(image_path)
+        im.save(output_jpg)
+        if os.path.exists(output_svg):
+            continue
+        print("Working on %s" % output_svg)
         load_time += time.time() - start_time
         start_time = time.time()
         X, COMs = local_maxima_generate_points(arr, find_maxima=False)
@@ -144,7 +142,7 @@ if __name__ == "__main__":
         ML_time += time.time() - start_time
         start_time = time.time()
         prediction = output[:, 0] > output[:, 1]
-        svg = CreateSVG(output_file, arr.shape, image_path)
+        svg = CreateSVG(output_svg, arr.shape, output_jpg)
         for i in range(prediction.size):
             if prediction[i]:
                 x, y = COMs[i]
@@ -155,3 +153,21 @@ if __name__ == "__main__":
     print("Proposal Time: %.2f" % proposal_time)
     print("ML Time: %.2f" % ML_time)
     print("Output Time: %.2f" % output_time)
+
+
+if __name__ == "__main__":
+
+    parser = argparse.ArgumentParser(description="This program uses the pretrained NN to search for cells")
+    parser.add_argument("-d", "--directory", type=str, help="Brain level directory")
+    parser.add_argument("-o", "--order", type=str, help="Order file for multiple brains")
+    args = parser.parse_args()
+
+    model = NetworkTrain.load_json_model("Boutons")
+    if args.directory is not None:
+        count_brain(args.directory, model)
+    elif args.order is not None:
+        dir_name = os.path.dirname(args.order)
+        with open(args.order) as f:
+            for line in f:
+                line = os.path.join(dir_name, line.strip())
+                count_brain(line, model)

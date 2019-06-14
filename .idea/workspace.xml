@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b24f7-2dba-4996-acd5-932e79af3d84" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Boutons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Boutons.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Boutons.h5" beforeDir="false" afterPath="$PROJECT_DIR$/Boutons.h5" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Boutons/00.npz" beforeDir="false" afterPath="$PROJECT_DIR$/Boutons/00.npz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CellFromIllustrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/CellFromIllustrator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenerateTrainData.py" beforeDir="false" afterPath="$PROJECT_DIR$/GenerateTrainData.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NetworkTrain.py" beforeDir="false" afterPath="$PROJECT_DIR$/NetworkTrain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BoutonCount.py" beforeDir="false" afterPath="$PROJECT_DIR$/BoutonCount.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +16,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CellFromIllustrator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="2010">
               <caret line="141" column="39" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -34,7 +28,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GenerateTrainData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="765">
               <caret line="58" selection-start-line="58" selection-end-line="58" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -43,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/NetworkTrain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="101" column="14" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
+            <state relative-caret-position="1500">
+              <caret line="107" selection-start-line="107" selection-end-line="107" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -67,11 +61,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BoutonCount.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="138" column="32" selection-start-line="138" selection-start-column="32" selection-end-line="138" selection-end-column="32" />
+            <state relative-caret-position="235">
+              <caret line="162" column="30" selection-start-line="162" selection-start-column="30" selection-end-line="162" selection-end-column="30" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -158,6 +152,8 @@
       <find>title</find>
       <find>plt</find>
       <find>scipy</find>
+      <find>output_file</find>
+      <find>args.dir</find>
     </findStrings>
     <replaceStrings>
       <replace>RADIU</replace>
@@ -167,6 +163,7 @@
       <replace>args.input</replace>
       <replace>xdata</replace>
       <replace>ydata</replace>
+      <replace>output_svg</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -182,17 +179,17 @@
         <option value="$PROJECT_DIR$/GenerateMask.py" />
         <option value="$PROJECT_DIR$/Colabeling.py" />
         <option value="$PROJECT_DIR$/NetworkEvaluate.py" />
-        <option value="$PROJECT_DIR$/BoutonCount.py" />
         <option value="$PROJECT_DIR$/CellFromIllustrator.py" />
         <option value="$PROJECT_DIR$/NetworkTrain.py" />
         <option value="$PROJECT_DIR$/Constants.py" />
         <option value="$PROJECT_DIR$/GenerateTrainData.py" />
+        <option value="$PROJECT_DIR$/BoutonCount.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="187" />
-    <option name="y" value="125" />
+    <option name="x" value="1774" />
+    <option name="y" value="74" />
     <option name="width" value="1126" />
     <option name="height" value="750" />
   </component>
@@ -243,7 +240,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.NetworkTrain">
+  <component name="RunManager" selected="Python.BoutonCount">
     <configuration name="BoutonCount" type="PythonConfigurationType" factoryName="Python">
       <module name="CellCount" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -257,7 +254,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BoutonCount.py" />
-      <option name="PARAMETERS" value="-d &quot;$USER_HOME$/rdss_drive/Automatic Bouton Counting/01812&quot;" />
+      <option name="PARAMETERS" value="-o &quot;$USER_HOME$/rdss_drive/Automatic Bouton Counting/Order.txt&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -447,19 +444,26 @@
       <option name="project" value="LOCAL" />
       <updated>1560465996632</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added more training data and made box bigger">
+      <created>1560472788978</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1560472788978</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-1" width="1500" height="999" extended-state="6" />
+    <frame x="1500" y="-1" width="1920" height="1079" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3060257" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23774381" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43607306" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43514645" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39435145" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -480,12 +484,14 @@
     <MESSAGE value="Added timer" />
     <MESSAGE value="Fixed numbering" />
     <MESSAGE value="Keep better track of time" />
-    <option name="LAST_COMMIT_MESSAGE" value="Keep better track of time" />
+    <MESSAGE value="Added more training data and made box bigger" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added more training data and made box bigger" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="os.path.join(args.directory, directory)" language="Python" />
+        <watch expression="os.path.isdir(os.path.join(args.directory, directory))" language="Python" />
         <watch expression="os.path.isdir(os.path.join(args.directory, directory))" language="Python" />
       </configuration>
     </watches-manager>
@@ -617,6 +623,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CellFromIllustrator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2010">
+          <caret line="141" column="39" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GenerateTrainData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetworkTrain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1500">
+          <caret line="107" selection-start-line="107" selection-end-line="107" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/NetworkEvaluate.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3765">
@@ -634,6 +670,13 @@
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -659,47 +702,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BoutonCount.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="138" column="32" selection-start-line="138" selection-start-column="32" selection-end-line="138" selection-end-column="32" />
+        <state relative-caret-position="235">
+          <caret line="162" column="30" selection-start-line="162" selection-start-column="30" selection-end-line="162" selection-end-column="30" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CellFromIllustrator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="141" column="39" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GenerateTrainData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="58" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NetworkTrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="101" column="14" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
