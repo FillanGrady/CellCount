@@ -74,7 +74,8 @@ if __name__ == "__main__":
     X = np.stack(X, axis=0)
     Y = np.stack(Y, axis=0)
     for file in os.listdir(args.train):
-        os.remove(os.path.join(args.train, file))
+        pass
+        #os.remove(os.path.join(args.train, file))
     np.savez_compressed(os.path.join(args.train, "00.npz"), X=X, Y=Y)
     X = X.astype(np.float32) / 255
     X, Y = shuffle_in_unison_scary(X, Y)
@@ -90,7 +91,7 @@ if __name__ == "__main__":
     else:
         model = load_json_model(args.pretrained_model)
     model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
-    model.fit(train_X, train_Y, validation_data=(test_X, test_Y), epochs=5, batch_size=40)
+    model.fit(train_X, train_Y, validation_data=(test_X, test_Y), epochs=15, batch_size=40)
     model_to_json(model, args.model)
     scores = model.evaluate(test_X, test_Y, verbose=0)
     print("CNN Error: %.2f%%" % (100-scores[1]*100))
