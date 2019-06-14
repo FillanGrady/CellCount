@@ -95,7 +95,6 @@ if __name__ == "__main__":
     scores = model.evaluate(test_X, test_Y, verbose=0)
     print("CNN Error: %.2f%%" % (100-scores[1]*100))
 
-
     for i in range(test_X.shape[0]):
         x = test_X[i: i+1, :, :, :]
         output = model.predict(x)[0]

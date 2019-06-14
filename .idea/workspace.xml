@@ -3,7 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="db3b24f7-2dba-4996-acd5-932e79af3d84" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BoutonCount.py" beforeDir="false" afterPath="$PROJECT_DIR$/BoutonCount.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Boutons.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Boutons.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Boutons.h5" beforeDir="false" afterPath="$PROJECT_DIR$/Boutons.h5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Boutons/00.npz" beforeDir="false" afterPath="$PROJECT_DIR$/Boutons/00.npz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CellFromIllustrator.py" beforeDir="false" afterPath="$PROJECT_DIR$/CellFromIllustrator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenerateTrainData.py" beforeDir="false" afterPath="$PROJECT_DIR$/GenerateTrainData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetworkTrain.py" beforeDir="false" afterPath="$PROJECT_DIR$/NetworkTrain.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -16,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CellFromIllustrator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-261">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="330">
+              <caret line="141" column="39" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -28,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GenerateTrainData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="750">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="330">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -37,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/NetworkTrain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="76" column="49" lean-forward="true" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
+            <state relative-caret-position="279">
+              <caret line="101" column="14" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -53,7 +59,7 @@
         <entry file="file://$PROJECT_DIR$/NetworkEvaluate.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="3765">
-              <caret line="262" column="25" lean-forward="true" selection-start-line="262" selection-start-column="25" selection-end-line="262" selection-end-column="25" />
+              <caret line="262" column="25" selection-start-line="262" selection-start-column="25" selection-end-line="262" selection-end-column="25" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -61,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BoutonCount.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="155" column="36" lean-forward="true" selection-start-line="155" selection-start-column="36" selection-end-line="155" selection-end-column="36" />
+            <state relative-caret-position="452">
+              <caret line="138" column="32" selection-start-line="138" selection-start-column="32" selection-end-line="138" selection-end-column="32" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -175,18 +181,18 @@
         <option value="$PROJECT_DIR$/OverlapTrain.py" />
         <option value="$PROJECT_DIR$/GenerateMask.py" />
         <option value="$PROJECT_DIR$/Colabeling.py" />
-        <option value="$PROJECT_DIR$/NetworkTrain.py" />
-        <option value="$PROJECT_DIR$/CellFromIllustrator.py" />
         <option value="$PROJECT_DIR$/NetworkEvaluate.py" />
+        <option value="$PROJECT_DIR$/BoutonCount.py" />
+        <option value="$PROJECT_DIR$/CellFromIllustrator.py" />
+        <option value="$PROJECT_DIR$/NetworkTrain.py" />
         <option value="$PROJECT_DIR$/Constants.py" />
         <option value="$PROJECT_DIR$/GenerateTrainData.py" />
-        <option value="$PROJECT_DIR$/BoutonCount.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1582" />
-    <option name="y" value="146" />
+    <option name="x" value="187" />
+    <option name="y" value="125" />
     <option name="width" value="1126" />
     <option name="height" value="750" />
   </component>
@@ -202,6 +208,11 @@
             <path>
               <item name="CellCount" type="b2602c69:ProjectViewProjectNode" />
               <item name="CellCount" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="CellCount" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CellCount" type="462c0819:PsiDirectoryNode" />
+              <item name="Atoh1" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CellCount" type="b2602c69:ProjectViewProjectNode" />
@@ -232,7 +243,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.BoutonCount">
+  <component name="RunManager" selected="Python.NetworkTrain">
     <configuration name="BoutonCount" type="PythonConfigurationType" factoryName="Python">
       <module name="CellCount" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -429,19 +440,26 @@
       <option name="project" value="LOCAL" />
       <updated>1560199515331</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Keep better track of time">
+      <created>1560465996632</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1560465996632</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1500" y="-1" width="1920" height="1079" extended-state="6" />
+    <frame x="0" y="-1" width="1500" height="999" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30627307" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3060257" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43619248" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43607306" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39435145" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -461,7 +479,8 @@
     <MESSAGE value="Sorted files" />
     <MESSAGE value="Added timer" />
     <MESSAGE value="Fixed numbering" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed numbering" />
+    <MESSAGE value="Keep better track of time" />
+    <option name="LAST_COMMIT_MESSAGE" value="Keep better track of time" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -598,30 +617,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GenerateTrainData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="750">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/NetworkTrain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="76" column="49" lean-forward="true" selection-start-line="76" selection-start-column="49" selection-end-line="76" selection-end-column="49" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/NetworkEvaluate.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3765">
-          <caret line="262" column="25" lean-forward="true" selection-start-line="262" selection-start-column="25" selection-end-line="262" selection-end-column="25" />
+          <caret line="262" column="25" selection-start-line="262" selection-start-column="25" selection-end-line="262" selection-end-column="25" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
@@ -635,13 +634,6 @@
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Constants.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="9" selection-start-column="9" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -665,22 +657,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BoutonCount.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="138" column="32" selection-start-line="138" selection-start-column="32" selection-end-line="138" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Constants.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="9" selection-start-column="9" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/CellFromIllustrator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-261">
-          <caret line="53" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="330">
+          <caret line="141" column="39" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BoutonCount.py">
+    <entry file="file://$PROJECT_DIR$/GenerateTrainData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="155" column="36" lean-forward="true" selection-start-line="155" selection-start-column="36" selection-end-line="155" selection-end-column="36" />
+        <state relative-caret-position="330">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
           <folding>
-            <element signature="e#0#19#0" expanded="true" />
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetworkTrain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="101" column="14" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

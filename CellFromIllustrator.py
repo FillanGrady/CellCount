@@ -111,40 +111,49 @@ if __name__ == "__main__":
 
         output = unlabeled
         fuzzy = scipy.ndimage.filters.gaussian_filter(unlabeled, sigma=3)
+        """
         fig, ax = plt.subplots(1)
         plt.imshow(output, cmap="gray")
+        """
         print("%s had %s cells" % (image_name, len(points)))
         with open(args.csv, "a+") as f:
-            for point_x, point_y in points:
-                point_x = int(point_x * scaling + 0.5)
-                point_y = int(point_y * scaling + 0.5)
-
-                """
-                The point in illustrator was probably not placed exactly on top of the cell
-                This allows the center point to move slightly to be better placed
-                """
-
-                point_x, point_y = wobble_point(fuzzy, point_x, point_y)
-
-                """
-                show_radius = 70
-                try:
-                    show = unlabeled[point_x - show_radius: point_x + show_radius, point_y - show_radius: point_y + show_radius]
-                    show[show_radius + RADIUS, show_radius - RADIUS: show_radius + RADIUS] = 40
-                    show[show_radius - RADIUS, show_radius - RADIUS: show_radius + RADIUS] = 40
-                    show[show_radius - RADIUS: show_radius + RADIUS, show_radius - RADIUS] = 40
-                    show[show_radius - RADIUS: show_radius + RADIUS, show_radius + RADIUS] = 40
-                    plt.imshow(show, cmap="gray")
-                    plt.show()
-                except IndexError as e:
-                    pass
-                """
-                circle = patches.Circle(xy=(point_y, point_x), radius=3, facecolor='r')
-                ax.add_patch(circle)
-
-                if point_x < RADIUS or point_x > unlabeled.shape[0] - RADIUS or point_y < RADIUS or point_y > unlabeled.shape[1]:
-                    continue
-                f.write(",".join(map(str, [rescaled_name, unlabeled.shape[0], unlabeled.shape[1], "Cell", point_x - RADIUS, point_y - RADIUS, RADIUS * 2, RADIUS * 2])))
+            if len(points) == 0:
+                f.write(rescaled_name)
                 f.write(os.linesep)
+            else:
+                for point_x, point_y in points:
+                    point_x = int(point_x * scaling + 0.5)
+                    point_y = int(point_y * scaling + 0.5)
+
+                    """
+                    The point in illustrator was probably not placed exactly on top of the cell
+                    This allows the center point to move slightly to be better placed
+                    """
+
+                    point_x, point_y = wobble_point(fuzzy, point_x, point_y)
+
+                    """
+                    show_radius = 70
+                    try:
+                        show = unlabeled[point_x - show_radius: point_x + show_radius, point_y - show_radius: point_y + show_radius]
+                        show[show_radius + RADIUS, show_radius - RADIUS: show_radius + RADIUS] = 40
+                        show[show_radius - RADIUS, show_radius - RADIUS: show_radius + RADIUS] = 40
+                        show[show_radius - RADIUS: show_radius + RADIUS, show_radius - RADIUS] = 40
+                        show[show_radius - RADIUS: show_radius + RADIUS, show_radius + RADIUS] = 40
+                        plt.imshow(show, cmap="gray")
+                        plt.show()
+                    except IndexError as e:
+                        pass
+                    """
+                    """
+                    circle = patches.Circle(xy=(point_y, point_x), radius=3, facecolor='r')
+                    ax.add_patch(circle)
+                    """
+                    if point_x < RADIUS or point_x > unlabeled.shape[0] - RADIUS or point_y < RADIUS or point_y > unlabeled.shape[1]:
+                        continue
+                    f.write(",".join(map(str, [rescaled_name, unlabeled.shape[0], unlabeled.shape[1], "Cell", point_x - RADIUS, point_y - RADIUS, RADIUS * 2, RADIUS * 2])))
+                    f.write(os.linesep)
+        """
         plt.title(image_name)
         plt.show()
+        """

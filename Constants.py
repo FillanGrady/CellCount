@@ -1,2 +1,2 @@
-SIZE = 14
+SIZE = 18
 RADIUS = SIZE // 2

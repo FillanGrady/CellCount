@@ -12,7 +12,7 @@ def read_csv_file(csv_file_name):
     lines = []
     with open(csv_file_name, "r") as f:
         for line in f:
-            lines.append(line.split(","))
+            lines.append(line.strip().split(","))
     lines.sort(key=lambda x: x[0])
     return lines
 
@@ -43,12 +43,13 @@ def generate_negative_data(arr, cell_map, number):
     """
     X = []
     Y = []
-    probabilities = 255 - np.ravel(arr).astype(np.uint64)
+    probabilities = (255 - np.ravel(arr).astype(np.uint64)) ^ 3
     probabilities = probabilities / probabilities.sum()
     start_locations = np.random.choice(arr.size, size=number, p=probabilities)
     # Generates a weighted random vector NUMBER long, where the probability of any value is the lightness of that pixel
     xs, ys = np.unravel_index(start_locations, arr.shape)
     for x, y in zip(xs, ys):
+
         if np.average(cell_map[int(x - RADIUS): int(x + RADIUS), int(y - RADIUS): int(y + RADIUS)]) < 0.5:
             sub_arr = arr[int(x - RADIUS): int(x + RADIUS), int(y - RADIUS): int(y + RADIUS)]
             if sub_arr.size == SIZE ** 2:
@@ -65,7 +66,7 @@ def generate_data(lines):
     cell_map = np.zeros(arr.shape, dtype=np.bool)
     for line in lines:
         if line[0] != last_file:
-            X_, Y_ = generate_negative_data(arr, cell_map, 10000)
+            X_, Y_ = generate_negative_data(arr, cell_map, 5000)
             X.extend(X_)
             Y.extend(Y_)
             arr = CellFromIllustrator.file_to_array(line[0]).astype(np.uint8)
@@ -76,20 +77,21 @@ def generate_data(lines):
             We need to generate negative training data, but we don't want the negative "no cell" images to accidentally
             overlap with the cells.  So every cell is marked as True, and everything else is marked as False
             """
-        x = int(line[4])
-        y = int(line[5])
-        w = int(line[6])
-        h = int(line[7])
-        subset = arr[x: x + w, y: y + h]
-        if subset.shape != (SIZE, SIZE):
-            continue
+        if len(line) > 7:
+            x = int(line[4])
+            y = int(line[5])
+            w = int(line[6])
+            h = int(line[7])
+            subset = arr[x: x + w, y: y + h]
+            if subset.shape != (SIZE, SIZE):
+                continue
 
-        Xs, Ys = data_augmentation(subset, [1, 0])
-        X.extend(Xs)
-        Y.extend(Ys)
+            Xs, Ys = data_augmentation(subset, [1, 0])
+            X.extend(Xs)
+            Y.extend(Ys)
 
-        cell_map[x: x + w, y: y + h] = True
-    X_, Y_ = generate_negative_data(arr, cell_map, 10000)
+            cell_map[x: x + w, y: y + h] = True
+    X_, Y_ = generate_negative_data(arr, cell_map, 5000)
     X.extend(X_)
     Y.extend(Y_)
     return X, Y
