@@ -126,7 +126,10 @@ def count_brain(brain_directory, model):
             print("Images for %s do not exist" % directory)
             continue
         print("Working on %s" % output_jpg)
-        arr = np.concatenate(arrs, axis=1)
+        if arrs[0].shape[0] > arrs[0].shape[1]:
+            arr = np.concatenate(arrs, axis=1)
+        else:
+            arr = np.concatenate(arrs, axis=0)
         arr = (arr - arr.min()) / (arr.max() - arr.min())
         im = Image.fromarray(arr * 255).convert("L")
         im.save(output_jpg)
