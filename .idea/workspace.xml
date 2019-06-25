@@ -64,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BoutonCount.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="162" column="30" selection-start-line="162" selection-start-column="30" selection-end-line="162" selection-end-column="30" />
+            <state relative-caret-position="283">
+              <caret line="173" column="65" selection-start-line="173" selection-start-column="65" selection-end-line="173" selection-end-column="65" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -188,8 +188,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1774" />
-    <option name="y" value="74" />
+    <option name="x" value="2032" />
+    <option name="y" value="187" />
     <option name="width" value="1126" />
     <option name="height" value="750" />
   </component>
@@ -254,7 +254,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BoutonCount.py" />
-      <option name="PARAMETERS" value="-o &quot;$USER_HOME$/rdss_drive/Automatic Bouton Counting/Order.txt&quot;" />
+      <option name="PARAMETERS" value="-d &quot;$USER_HOME$/rdss_drive/Automatic Bouton Counting/00017&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -451,14 +451,28 @@
       <option name="project" value="LOCAL" />
       <updated>1560472788978</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Can run on multiple brains">
+      <created>1560536495749</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1560536495749</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Correctly joins Olyvia files horizontally and vertically">
+      <created>1561142086373</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1561142086373</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1500" y="-1" width="1920" height="1079" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23774381" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.185029" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -485,7 +499,9 @@
     <MESSAGE value="Fixed numbering" />
     <MESSAGE value="Keep better track of time" />
     <MESSAGE value="Added more training data and made box bigger" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more training data and made box bigger" />
+    <MESSAGE value="Can run on multiple brains" />
+    <MESSAGE value="Correctly joins Olyvia files horizontally and vertically" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correctly joins Olyvia files horizontally and vertically" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -702,8 +718,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BoutonCount.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="162" column="30" selection-start-line="162" selection-start-column="30" selection-end-line="162" selection-end-column="30" />
+        <state relative-caret-position="283">
+          <caret line="173" column="65" selection-start-line="173" selection-start-column="65" selection-end-line="173" selection-end-column="65" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

@@ -114,22 +114,34 @@ def count_brain(brain_directory, model):
         output_svg = "%s.svg" % directory
         if not os.path.isdir(os.path.join(brain_directory, directory)):
             continue
-        if os.path.exists(output_jpg):
+        if os.path.exists(output_svg):
             continue
-        arrs = []
         start_time = time.time()
-        try:
-            for file in sorted(os.listdir(directory)):
-                if file.endswith(".tif") and "IMAGE" in file:
-                    arrs.append(CellFromIllustrator.file_to_array(os.path.join(directory, file)).astype(np.float32))
-        except OSError:
-            print("Images for %s do not exist" % directory)
-            continue
-        print("Working on %s" % output_jpg)
-        if arrs[0].shape[0] > arrs[0].shape[1]:
-            arr = np.concatenate(arrs, axis=1)
+        if os.path.exists(output_jpg):
+            arr = CellFromIllustrator.file_to_array(output_jpg).astype(np.float32)
         else:
-            arr = np.concatenate(arrs, axis=0)
+            arrs = []
+            dirs = [f for f in sorted(os.listdir(directory)) if os.path.isfile(os.path.join(directory, f))]
+            if len(dirs) == 0:  # If exported through CellSens
+                for r, d, f in os.walk(directory):
+                    for file in f:
+                        if file.endswith(".tif") and "EFI" in file:
+                            print(os.path.join(r, file))
+                            arrs.append(
+                                CellFromIllustrator.file_to_array(os.path.join(r, file)).astype(np.float32))
+            else:
+                try:
+                    for file in dirs:  # If exported through VS-ASW
+                        if file.endswith(".tif") and "IMAGE" in file:
+                            arrs.append(CellFromIllustrator.file_to_array(os.path.join(directory, file)).astype(np.float32))
+                except OSError:
+                    print("Images for %s do not exist" % directory)
+                    continue
+            print("Working on %s" % output_jpg)
+            if arrs[0].shape[0] > arrs[0].shape[1]:
+                arr = np.concatenate(arrs, axis=1)
+            else:
+                arr = np.concatenate(arrs, axis=0)
         arr = (arr - arr.min()) / (arr.max() - arr.min())
         im = Image.fromarray(arr * 255).convert("L")
         im.save(output_jpg)
@@ -144,12 +156,10 @@ def count_brain(brain_directory, model):
         output = model.predict(X)
         ML_time += time.time() - start_time
         start_time = time.time()
-        prediction = output[:, 0] > output[:, 1]
         svg = CreateSVG(output_svg, arr.shape, output_jpg)
-        for i in range(prediction.size):
-            if prediction[i]:
-                x, y = COMs[i]
-                svg.add_symbol(location_xy=(y, x))
+        true_cells = COMs[output[:, 0] > output[:, 1], :]
+        for i in range(true_cells.shape[0]):
+            svg.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
         svg.output()
         output_time += time.time() - start_time
     print("Load Time: %.2f" % load_time)
@@ -165,6 +175,7 @@ if __name__ == "__main__":
     parser.add_argument("-o", "--order", type=str, help="Order file for multiple brains")
     args = parser.parse_args()
 
+    Image.MAX_IMAGE_PIXELS = None
     model = NetworkTrain.load_json_model("Boutons")
     if args.directory is not None:
         count_brain(args.directory, model)
