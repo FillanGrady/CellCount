@@ -64,8 +64,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BoutonCount.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="283">
-              <caret line="173" column="65" selection-start-line="173" selection-start-column="65" selection-end-line="173" selection-end-column="65" />
+            <state relative-caret-position="337">
+              <caret line="134" column="24" selection-start-line="134" selection-start-column="24" selection-end-line="134" selection-end-column="24" />
               <folding>
                 <element signature="e#0#19#0" expanded="true" />
               </folding>
@@ -254,7 +254,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/BoutonCount.py" />
-      <option name="PARAMETERS" value="-d &quot;$USER_HOME$/rdss_drive/Automatic Bouton Counting/00017&quot;" />
+      <option name="PARAMETERS" value="-o &quot;$USER_HOME$/rdss_drive/Automatic Bouton Counting/Order.txt&quot;" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -465,7 +465,14 @@
       <option name="project" value="LOCAL" />
       <updated>1561142086373</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Faster output&#10;Can read CellSens exported files">
+      <created>1561424427470</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1561424427470</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -477,8 +484,8 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.43514645" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39435145" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.43514645" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.39435145" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -501,9 +508,19 @@
     <MESSAGE value="Added more training data and made box bigger" />
     <MESSAGE value="Can run on multiple brains" />
     <MESSAGE value="Correctly joins Olyvia files horizontally and vertically" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correctly joins Olyvia files horizontally and vertically" />
+    <MESSAGE value="Faster output&#10;Can read CellSens exported files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Faster output&#10;Can read CellSens exported files" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/BoutonCount.py</url>
+          <line>124</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
         <watch expression="os.path.join(args.directory, directory)" language="Python" />
@@ -718,8 +735,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BoutonCount.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="173" column="65" selection-start-line="173" selection-start-column="65" selection-end-line="173" selection-end-column="65" />
+        <state relative-caret-position="337">
+          <caret line="134" column="24" selection-start-line="134" selection-start-column="24" selection-end-line="134" selection-end-column="24" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>

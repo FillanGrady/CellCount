@@ -121,8 +121,8 @@ def count_brain(brain_directory, model):
             arr = CellFromIllustrator.file_to_array(output_jpg).astype(np.float32)
         else:
             arrs = []
-            dirs = [f for f in sorted(os.listdir(directory)) if os.path.isfile(os.path.join(directory, f))]
-            if len(dirs) == 0:  # If exported through CellSens
+            files = [f for f in sorted(os.listdir(directory)) if os.path.isfile(os.path.join(directory, f)) and f.endswith(".tif") and "IMAGE" in f]
+            if len(files) == 0:  # If exported through CellSens
                 for r, d, f in os.walk(directory):
                     for file in f:
                         if file.endswith(".tif") and "EFI" in file:
@@ -131,9 +131,8 @@ def count_brain(brain_directory, model):
                                 CellFromIllustrator.file_to_array(os.path.join(r, file)).astype(np.float32))
             else:
                 try:
-                    for file in dirs:  # If exported through VS-ASW
-                        if file.endswith(".tif") and "IMAGE" in file:
-                            arrs.append(CellFromIllustrator.file_to_array(os.path.join(directory, file)).astype(np.float32))
+                    for file in files:  # If exported through VS-ASW
+                        arrs.append(CellFromIllustrator.file_to_array(os.path.join(directory, file)).astype(np.float32))
                 except OSError:
                     print("Images for %s do not exist" % directory)
                     continue
