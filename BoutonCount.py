@@ -71,8 +71,7 @@ class CreateSVG():
         self.output_svgname = output_svgname
         x = artboard_size_xy[1]
         y = artboard_size_xy[0]
-        self.string = \
-"""<?xml version="1.0" encoding="utf-8"?>
+        self.strings = ["""<?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.0.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 %s %s" style="enable-background:new 0 0 %s %s;" xml:space="preserve">
@@ -88,26 +87,24 @@ class CreateSVG():
 		</image>
 	</g>
 </g>
-<g id="Boutons">""" % (x, y, x, y, x, y, input_image)
+<g id="Boutons">
+""" % (x, y, x, y, x, y, input_image)]
 
     def add_symbol(self, location_xy):
-        self.string += \
+        self.strings.append(\
 """		<use xlink:href="#Bouton"  width="3.8" height="3.8" x="-1.9" y="-1.9" transform="matrix(1.0026 0 0 -1.0026 %s %s)" style="overflow:visible;enable-background:new    ;"/>
-""" % (location_xy[0], location_xy[1])
+""" % (location_xy[0], location_xy[1]))
 
     def output(self):
-        self.string += \
+        self.strings.append(\
 """</g>
-</svg>"""
+</svg>""")
+        string = "".join(self.strings)
         with open(self.output_svgname, 'w+') as f:
-            f.write(self.string)
+            f.write(string)
 
 
 def count_brain(brain_directory, model):
-    load_time = 0
-    proposal_time = 0
-    ML_time = 0
-    output_time = 0
     for directory in sorted(os.listdir(brain_directory)):
         directory = os.path.join(brain_directory, directory)
         output_jpg = "%s.jpg" % directory
@@ -120,51 +117,47 @@ def count_brain(brain_directory, model):
         if os.path.exists(output_jpg):
             arr = CellFromIllustrator.file_to_array(output_jpg).astype(np.float32)
         else:
-            arrs = []
+            arr = None
             files = [f for f in sorted(os.listdir(directory)) if os.path.isfile(os.path.join(directory, f)) and f.endswith(".tif") and "IMAGE" in f]
             if len(files) == 0:  # If exported through CellSens
                 for r, d, f in os.walk(directory):
                     for file in f:
                         if file.endswith(".tif") and "EFI" in file:
                             print(os.path.join(r, file))
-                            arrs.append(
-                                CellFromIllustrator.file_to_array(os.path.join(r, file)).astype(np.float32))
+                            arr = CellFromIllustrator.file_to_array(os.path.join(r, file)).astype(np.float32)
             else:
                 try:
+                    arrs = []
                     for file in files:  # If exported through VS-ASW
                         arrs.append(CellFromIllustrator.file_to_array(os.path.join(directory, file)).astype(np.float32))
+                    if arrs[0].shape[0] > arrs[0].shape[1]:
+                        arr = np.concatenate(arrs, axis=1)
+                    else:
+                        arr = np.concatenate(arrs, axis=0)
                 except OSError:
                     print("Images for %s do not exist" % directory)
                     continue
             print("Working on %s" % output_jpg)
-            if arrs[0].shape[0] > arrs[0].shape[1]:
-                arr = np.concatenate(arrs, axis=1)
-            else:
-                arr = np.concatenate(arrs, axis=0)
         arr = (arr - arr.min()) / (arr.max() - arr.min())
         im = Image.fromarray(arr * 255).convert("L")
         im.save(output_jpg)
         if os.path.exists(output_svg):
             continue
         print("Working on %s" % output_svg)
-        load_time += time.time() - start_time
+        print("Load Time: %.2f" % (time.time() - start_time))
         start_time = time.time()
         X, COMs = local_maxima_generate_points(arr, find_maxima=False)
-        proposal_time += time.time() - start_time
+        print("Proposal Time: %.2f" % (time.time() - start_time))
         start_time = time.time()
         output = model.predict(X)
-        ML_time += time.time() - start_time
+        print("ML Time: %.2f" % (time.time() - start_time))
         start_time = time.time()
         svg = CreateSVG(output_svg, arr.shape, output_jpg)
         true_cells = COMs[output[:, 0] > output[:, 1], :]
         for i in range(true_cells.shape[0]):
             svg.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
         svg.output()
-        output_time += time.time() - start_time
-    print("Load Time: %.2f" % load_time)
-    print("Proposal Time: %.2f" % proposal_time)
-    print("ML Time: %.2f" % ML_time)
-    print("Output Time: %.2f" % output_time)
+        print("Output Time: %.2f" % (time.time() - start_time))
 
 
 if __name__ == "__main__":
