@@ -101,7 +101,7 @@ class CreateJPG():
         image_array[:, :, 0] = 255  # Convert to image array
         image_array[:, :, 1] = 255 - 255 * self.arr
         image_array[:, :, 2] = 255 - 255 * self.arr
-        image_array[:, :, 3] = 1 - self.arr
+        image_array[:, :, 3] = self.arr * 255
         image = Image.fromarray(image_array, 'RGBA')
         image.save(self.output_name)
 
