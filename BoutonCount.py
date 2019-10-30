@@ -81,7 +81,7 @@ class CreateTIF():
         self.x = artboard_size_xy[0]
         self.y = artboard_size_xy[1]
         self.arr = np.zeros(shape=(self.x, self.y), dtype=np.bool)
-        self.radius = 10
+        self.radius = 7
         self.symbol_shape = np.zeros((self.radius * 2 + 1, self.radius * 2 + 1), dtype=np.bool)
         for x in range(self.radius * 2 + 1):
             for y in range(self.radius * 2 + 1):
@@ -99,8 +99,8 @@ class CreateTIF():
     def output(self):
         image_array = np.zeros((self.arr.shape[0], self.arr.shape[1], 3), dtype=np.uint8)
         image_array[:, :, 0] = 255  # Convert to image array
-        image_array[:, :, 1] = 241 - 241 * self.arr
-        image_array[:, :, 2] = 191 - 191 * self.arr
+        image_array[:, :, 1] = 255 - 255 * self.arr
+        image_array[:, :, 2] = 255 - 255 * self.arr
         image = Image.fromarray(image_array, 'RGB')
         image.save(self.output_name, compression="jpeg")
 
