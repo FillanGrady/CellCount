@@ -222,7 +222,7 @@ def count_section(directory, model, oft):
 
 
 def count_brain(brain_directory, model, oft):
-    for directory in sorted(os.listdir(brain_directory)):
+    for directory in sorted([x for x in os.listdir(brain_directory) if os.path.isdir(x)]):
         count_section(os.path.join(brain_directory, directory), model, oft)
 
 
