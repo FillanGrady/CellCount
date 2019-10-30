@@ -13,10 +13,10 @@ class OutputFileType:
     def __init__(self):
         self.svg = False
         self.csv = False
-        self.tif = False
+        self.jpg = False
         
     def any(self):
-        return self.svg or self.csv or self.tif
+        return self.svg or self.csv or self.jpg
 
 def get_next_number(folder):
     i = 0
@@ -206,11 +206,11 @@ def count_section(directory, model, oft):
             for i in range(true_cells.shape[0]):
                 svg.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
             svg.output()
-        if oft.tif:
-            tif = CreateJPG(output_tif, arr.shape)
+        if oft.jpg:
+            jpg = CreateJPG(output_tif, arr.shape)
             for i in range(true_cells.shape[0]):
-                tif.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
-            tif.output()
+                jpg.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
+            jpg.output()
         if oft.csv:
             str = ""
             for i in range(true_cells.shape[0]):
@@ -230,14 +230,14 @@ if __name__ == "__main__":
     parser.add_argument("-d", "--directory", type=str, help="Brain level directory")
     parser.add_argument("-o", "--order", type=str, help="Order file for multiple brains")
     parser.add_argument("-f", "--folder", type=str, help="File for one section from one brain")
-    parser.add_argument("-t", "--tif", action="store_true", help="Output tif file Boutons.tif")
+    parser.add_argument("-j", "--jpg", action="store_true", help="Output jpg file Boutons.tif")
     parser.add_argument("-s", "--svg", action="store_true", help="Output svg file Boutons.svg")
     parser.add_argument("-c", "--csv", action="store_true", help="Output csv file Boutons.csv")
     args = parser.parse_args()
     Image.MAX_IMAGE_PIXELS = None
     model = NetworkTrain.load_json_model("Boutons")
     oft = OutputFileType()
-    oft.svg, oft.tif, oft.csv = args.svg, args.tif, args.csv
+    oft.svg, oft.jpg, oft.csv = args.svg, args.jpg, args.csv
     if args.directory is not None:
         count_brain(args.directory, model, oft)
     elif args.order is not None:
