@@ -97,12 +97,13 @@ class CreateJPG():
             pass
 
     def output(self):
-        image_array = np.zeros((self.arr.shape[0], self.arr.shape[1], 3), dtype=np.uint8)
+        image_array = np.zeros((self.arr.shape[0], self.arr.shape[1], 4), dtype=np.uint8)
         image_array[:, :, 0] = 255  # Convert to image array
         image_array[:, :, 1] = 255 - 255 * self.arr
         image_array[:, :, 2] = 255 - 255 * self.arr
-        image = Image.fromarray(image_array, 'RGB')
-        image.save(self.output_name, compression="jpeg")
+        image_array[:, :, 3] = 1 - self.arr
+        image = Image.fromarray(image_array, 'RGBA')
+        image.save(self.output_name)
 
 class CreateSVG():
     def __init__(self, output_svgname, artboard_size_xy, input_image):
@@ -149,14 +150,14 @@ def generate_border_and_mask(mask_file_path):
 
 def count_section(directory, model, oft):
     input_mask = os.path.join(directory, "Mask.jpg")
-    output_jpg = os.path.join(directory, "Image.jpg")
+    output_image = os.path.join(directory, "Image.jpg")
     output_svg = os.path.join(directory, "Boutons.svg")
-    output_tif = os.path.join(directory, "Boutons.jpg")
+    output_jpg = os.path.join(directory, "Boutons.jp2")
     output_csv = os.path.join(directory, "Boutons.csv")
     arr = None
     start_time = time.time()
-    if os.path.exists(output_jpg):
-        arr = CellFromIllustrator.file_to_array(output_jpg).astype(np.float32)
+    if os.path.exists(output_image):
+        arr = CellFromIllustrator.file_to_array(output_image).astype(np.float32)
     else:
         files = [f for f in sorted(os.listdir(directory)) if
                  os.path.isfile(os.path.join(directory, f)) and (f.endswith(".tif") or f.endswith("png")) and "IMAGE" in f]
@@ -183,10 +184,10 @@ def count_section(directory, model, oft):
             except OSError:
                 print("Images for %s do not exist" % directory)
                 return
-        print("Working on %s" % output_jpg)
+        print("Working on %s" % output_image)
     arr = (arr - arr.min()) / (arr.max() - arr.min())
     im = Image.fromarray(arr * 255).convert("L")
-    im.save(output_jpg)
+    im.save(output_image)
     if oft.any():
         mask = None
         if os.path.exists(input_mask):
@@ -202,12 +203,12 @@ def count_section(directory, model, oft):
         start_time = time.time()
         true_cells = COMs[output[:, 0] > 0.95, :]
         if oft.svg and not os.path.exists(output_svg):
-            svg = CreateSVG(output_svg, arr.shape, output_jpg)
+            svg = CreateSVG(output_svg, arr.shape, output_image)
             for i in range(true_cells.shape[0]):
                 svg.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
             svg.output()
         if oft.jpg:
-            jpg = CreateJPG(output_tif, arr.shape)
+            jpg = CreateJPG(output_jpg, arr.shape)
             for i in range(true_cells.shape[0]):
                 jpg.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
             jpg.output()
