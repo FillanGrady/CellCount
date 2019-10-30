@@ -152,7 +152,7 @@ def count_section(directory, model, oft):
     input_mask = os.path.join(directory, "Mask.jpg")
     output_image = os.path.join(directory, "Image.jpg")
     output_svg = os.path.join(directory, "Boutons.svg")
-    output_jpg = os.path.join(directory, "Boutons.jp2")
+    output_jpg = os.path.join(directory, "Boutons.png")
     output_csv = os.path.join(directory, "Boutons.csv")
     arr = None
     start_time = time.time()
