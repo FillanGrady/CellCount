@@ -75,13 +75,13 @@ def local_maxima_generate_points(arr, mask=None, find_maxima=True):
     return X, maxima
 
 
-class CreateTIF():
+class CreateJPG():
     def __init__(self, output_bouton_jpg_name, artboard_size_xy):
         self.output_name = output_bouton_jpg_name
         self.x = artboard_size_xy[0]
         self.y = artboard_size_xy[1]
         self.arr = np.zeros(shape=(self.x, self.y), dtype=np.bool)
-        self.radius = 7
+        self.radius = 5
         self.symbol_shape = np.zeros((self.radius * 2 + 1, self.radius * 2 + 1), dtype=np.bool)
         for x in range(self.radius * 2 + 1):
             for y in range(self.radius * 2 + 1):
@@ -151,7 +151,7 @@ def count_section(directory, model, oft):
     input_mask = os.path.join(directory, "Mask.jpg")
     output_jpg = os.path.join(directory, "Image.jpg")
     output_svg = os.path.join(directory, "Boutons.svg")
-    output_tif = os.path.join(directory, "Boutons.tif")
+    output_tif = os.path.join(directory, "Boutons.jpg")
     output_csv = os.path.join(directory, "Boutons.csv")
     arr = None
     start_time = time.time()
@@ -207,7 +207,7 @@ def count_section(directory, model, oft):
                 svg.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
             svg.output()
         if oft.tif:
-            tif = CreateTIF(output_tif, arr.shape)
+            tif = CreateJPG(output_tif, arr.shape)
             for i in range(true_cells.shape[0]):
                 tif.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
             tif.output()
@@ -222,7 +222,7 @@ def count_section(directory, model, oft):
 
 def count_brain(brain_directory, model, oft):
     for directory in sorted(os.listdir(brain_directory)):
-        count_section(directory, model, oft)
+        count_section(os.path.join(brain_directory, directory), model, oft)
 
 
 if __name__ == "__main__":
