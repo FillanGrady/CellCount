@@ -5,8 +5,6 @@ from keras.layers import Flatten
 from keras.layers.convolutional import Conv2D
 from keras.layers.convolutional import MaxPooling2D
 from keras.models import model_from_json
-from keras import backend as K
-K.set_image_dim_ordering('th')
 import argparse
 import numpy as np
 import CellFromIllustrator
