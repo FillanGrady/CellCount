@@ -162,13 +162,12 @@ def count_section(directory, model, oft):
         files = [f for f in sorted(os.listdir(directory)) if
                  os.path.isfile(os.path.join(directory, f)) and (f.endswith(".tif") or f.endswith("png")) and "IMAGE" in f]
         if len(files) == 0:  # If exported through CellSens
-            raise IOError("Is this really a CellSens export? If not, don't delete it")
             for r, d, f in os.walk(directory, topdown=False):
                 for file in f:
                     if file.endswith(".tif") and "EFI" in file:
                         print(os.path.join(r, file))
                         arr = CellFromIllustrator.file_to_array(os.path.join(r, file)).astype(np.float32)
-                    os.remove(os.path.join(r, file))
+                        os.remove(os.path.join(r, file))
                 if r != directory:
                     os.rmdir(r)
         else:
