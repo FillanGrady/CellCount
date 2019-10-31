@@ -75,14 +75,15 @@ def local_maxima_generate_points(arr, mask=None, find_maxima=True):
     return X, maxima
 
 
-class CreateJPG():
-    def __init__(self, output_bouton_jpg_name, artboard_size_xy):
-        self.output_name = output_bouton_jpg_name
+class CreatePNG():
+    def __init__(self, output_bouton_png_name, artboard_size_xy, downscale=1.0):
+        self.output_name = output_bouton_png_name
         self.x = artboard_size_xy[0]
         self.y = artboard_size_xy[1]
         self.arr = np.zeros(shape=(self.x, self.y), dtype=np.bool)
         self.radius = 5
         self.symbol_shape = np.zeros((self.radius * 2 + 1, self.radius * 2 + 1), dtype=np.bool)
+        self.downscale = downscale
         for x in range(self.radius * 2 + 1):
             for y in range(self.radius * 2 + 1):
                 if (x - self.radius) ** 2 + (y - self.radius) ** 2 <= self.radius ** 2:
@@ -103,7 +104,9 @@ class CreateJPG():
         image_array[:, :, 2] = 255 - 255 * self.arr
         image_array[:, :, 3] = self.arr * 255
         image = Image.fromarray(image_array, 'RGBA')
+        image = image.resize((int(self.arr[0] * self.downscale), int(self.arr[1] * self.downscale)), Image.BILINEAR)
         image.save(self.output_name)
+
 
 class CreateSVG():
     def __init__(self, output_svgname, artboard_size_xy, input_image):
@@ -152,7 +155,7 @@ def count_section(directory, model, oft):
     input_mask = os.path.join(directory, "Mask.jpg")
     output_image = os.path.join(directory, "Image.jpg")
     output_svg = os.path.join(directory, "Boutons.svg")
-    output_jpg = os.path.join(directory, "Boutons.png")
+    output_png = os.path.join(directory, "Boutons.png")
     output_csv = os.path.join(directory, "Boutons.csv")
     arr = None
     start_time = time.time()
@@ -207,7 +210,7 @@ def count_section(directory, model, oft):
                 svg.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
             svg.output()
         if oft.jpg:
-            jpg = CreateJPG(output_jpg, arr.shape)
+            jpg = CreatePNG(output_png, arr.shape, downscale=0.3)
             for i in range(true_cells.shape[0]):
                 jpg.add_symbol(location_xy=(true_cells[i, 1], true_cells[i, 0]))
             jpg.output()
